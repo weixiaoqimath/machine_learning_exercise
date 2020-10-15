@@ -1,1 +1,1 @@
-one vs rest method. simplified SMO
+one vs rest method and one vs one method. simplified SMO.
