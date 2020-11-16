@@ -5,7 +5,6 @@
 
 
 import numpy as np
-from scipy.spatial import distance 
 
 def accuracy(trueLabels, predLabels):
     return float(sum(trueLabels == predLabels.reshape(-1,1)))/ float(len(trueLabels))
