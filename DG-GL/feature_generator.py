@@ -156,14 +156,9 @@ def read_pdb(path):
         
 
 def read_mol2(path):
-    """
-    Parameters
-    ----------
-    path: a string of file path.
-    Returns
-    -------
-    atom_df: pandas dataframe 
-    L: dictionary of coordinates.
+    """ 
+        ----------
+        path: a string of file path.
     """
     # use biopandas to load atom data from a mol2 file.
     pmol = PandasMol2().read_mol2(path)
@@ -172,7 +167,10 @@ def read_mol2(path):
     for i in np.arange(atom_df.shape[0]):
         atom_type = atom_df.iloc[i]['atom_type']
         if atom_type[0] == 'H':
-            L['H'].append(i)
+            if len(atom_type) == 1:    
+                L['H'].append(i)
+            elif atom_type[1] == '.':
+                L['H'].append(i)
         elif atom_type[0] == 'C':
             if len(atom_type) == 1:
                 L['C'].append(i)
@@ -186,14 +184,20 @@ def read_mol2(path):
             elif atom_type[1] == '.':
                 L['N'].append(i)
         elif atom_type[0] == 'O':
-            L['O'].append(i)  
+            if len(atom_type) == 1:
+                L['O'].append(i)  
+            elif atom_type[1] == '.':
+                L['O'].append(i) 
         elif atom_type[0] == 'S':
             if len(atom_type) == 1:
                 L['S'].append(i)  
             elif atom_type[1] == '.':
                 L['S'].append(i) 
         elif atom_type[0] == 'P':
-            L['P'].append(i)  
+            if len(atom_type) == 1:
+                L['P'].append(i) 
+            elif atom_type[1] == '.':
+                L['P'].append(i) 
         elif atom_type[0] == 'F':
             if len(atom_type) == 1:
                 L['F'].append(i)  
@@ -202,12 +206,11 @@ def read_mol2(path):
         elif atom_type[:2] == 'Br':
             L['Br'].append(i)  
         elif atom_type[0] == 'I':
-            L['I'].append(i)  
+            if len(atom_type) == 1:
+                L['I'].append(i) 
+            elif atom_type[1] == '.':
+                L['I'].append(i) 
     return atom_df, L
-
-
-# In[22]:
-
 
 class protein_ligand_feature_generator():
     
