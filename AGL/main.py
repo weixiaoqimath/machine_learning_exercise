@@ -4,7 +4,7 @@
 # In[10]:
 
 
-import AGL_1229 as AGL
+import AGL
 import numpy as np
 import pandas as pd
 import glob
