@@ -49,10 +49,6 @@ for i in range(affinity_core_df.shape[0]):
     affinity_core_dict[affinity_core_df.iloc[i]['id']] = affinity_core_df.iloc[i]['num']
 
 
-# In[14]:
-
-
-# In[ ]:
 print('Generating train and test data')
 root = 'v2007'
 Xtrain = []
@@ -88,8 +84,6 @@ for filepath in glob.glob(root+'/*/*_protein.pdb'):
     if num_cplx_processed % 10 == 0: 
         print('{} protein-ligand complices are processed'.format(num_cplx_processed))        
 
-
-# In[15]:
 
 
 print('Saving files.')
