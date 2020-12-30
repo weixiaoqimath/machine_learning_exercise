@@ -227,7 +227,7 @@ class feature_generator():
         ligand_atom_type: H, C, N, O, S, P, F, Cl, Br, I
         Returns
         -------
-        eigenvalues: a 1d np array of nontrivial eigenvalues if the matrix is laplacian.
+        eigenvalues: a 1d np array of nontrivial eigenvalues.
         """
         if protein_coords.size == 0 or ligand_coords.size == 0:
             return None
@@ -254,6 +254,7 @@ class feature_generator():
                     mat[i,i] = -np.sum(mat[i,:])
                 
                 eigvals = eig_solver(mat)
+                # Take care of numerical error. Very small eigenvalues are seen as zero.
                 eigvals = eigvals[eigvals > 1e-5]
                 if eigvals.size == 0:
                     return None
