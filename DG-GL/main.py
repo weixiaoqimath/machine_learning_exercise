@@ -3,7 +3,7 @@
 
 # In[10]:
 
-import feature_generator as fg
+import DGGL as fg
 import numpy as np
 import pandas as pd
 import glob
