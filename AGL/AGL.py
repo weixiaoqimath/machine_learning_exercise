@@ -236,7 +236,6 @@ class feature_generator():
         # cut off distance 
         cut_off = 12
         protein_coords = protein_coords[np.any(dists <= cut_off, axis = 1)]
-        ligand_coords = ligand_coords[np.any(dists <= cut_off, axis = 0)]
         if protein_coords.size == 0:
             return None 
         dists = spatial.distance.cdist(protein_coords, ligand_coords)
@@ -247,9 +246,8 @@ class feature_generator():
             if self.matrix == 'lap':
                 for i in range(protein_coords.shape[0]):
                     for j in range(ligand_coords.shape[0]):
-                        if dists[i,j] <= cut_off:
-                            mat[i, protein_coords.shape[0]+j] = -exp_kernel(dists[i,j], eta, self.beta)
-                            mat[protein_coords.shape[0]+j, i] = mat[i, protein_coords.shape[0]+j]
+                        mat[i, protein_coords.shape[0]+j] = -exp_kernel(dists[i,j], eta, self.beta)
+                        mat[protein_coords.shape[0]+j, i] = mat[i, protein_coords.shape[0]+j]
                 for i in range(mat.shape[0]):
                     mat[i,i] = -np.sum(mat[i,:])
                 
@@ -263,9 +261,8 @@ class feature_generator():
             if self.matrix == 'adj':
                 for i in range(protein_coords.shape[0]):
                     for j in range(ligand_coords.shape[0]):
-                        if dists[i,j] <= cut_off:
-                            mat[i, protein_coords.shape[0]+j] = -exp_kernel(dists[i,j], eta, self.beta)
-                            mat[protein_coords.shape[0]+j, i] = mat[i, protein_coords.shape[0]+j]
+                        mat[i, protein_coords.shape[0]+j] = -exp_kernel(dists[i,j], eta, self.beta)
+                        mat[protein_coords.shape[0]+j, i] = mat[i, protein_coords.shape[0]+j]
                 eigvals = eig_solver(mat)
                 eigvals = eigvals[eigvals > 1e-5]
                 if eigvals.size == 0:
@@ -276,9 +273,8 @@ class feature_generator():
             if self.matrix == 'lap':
                 for i in range(protein_coords.shape[0]):
                     for j in range(ligand_coords.shape[0]):
-                        if dists[i,j] <= cut_off:
-                            mat[i, protein_coords.shape[0]+j] = -lorentz_kernel(dists[i,j], eta, self.beta)
-                            mat[protein_coords.shape[0]+j, i] = mat[i, protein_coords.shape[0]+j]
+                        mat[i, protein_coords.shape[0]+j] = -lorentz_kernel(dists[i,j], eta, self.beta)
+                        mat[protein_coords.shape[0]+j, i] = mat[i, protein_coords.shape[0]+j]
                 for i in range(mat.shape[0]):
                     mat[i,i] = -np.sum(mat[i,:])
                 
@@ -291,9 +287,8 @@ class feature_generator():
             if self.matrix == 'adj':
                 for i in range(protein_coords.shape[0]):
                     for j in range(ligand_coords.shape[0]):
-                        if dists[i,j] <= cut_off:
-                            mat[i, protein_coords.shape[0]+j] = -lorentz_kernel(dists[i,j], eta, self.beta)
-                            mat[protein_coords.shape[0]+j, i] = mat[i, protein_coords.shape[0]+j]
+                        mat[i, protein_coords.shape[0]+j] = -lorentz_kernel(dists[i,j], eta, self.beta)
+                        mat[protein_coords.shape[0]+j, i] = mat[i, protein_coords.shape[0]+j]
                 
                 eigvals = eig_solver(mat)
                 eigvals = eigvals[eigvals > 1e-5]
