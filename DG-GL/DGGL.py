@@ -295,7 +295,6 @@ class protein_ligand_feature_generator():
         dists = spatial.distance.cdist(protein_coords, ligand_coords)
         # find the binding site.
         protein_coords = protein_coords[np.any(dists <= 20, axis = 1)]
-        ligand_coords = ligand_coords[np.any(dists <= 20, axis = 0)]
         # if the binding site is empty
         if protein_coords.size == 0:
             return np.zeros(1)
@@ -314,32 +313,20 @@ class protein_ligand_feature_generator():
         if self.kernel == 'exp':
             for i in np.arange(protein_coords.shape[0]):
                 for j in np.arange(ligand_coords.shape[0]):
-                    # cut off distance is 20 Angstrom
-                    if dists[i, j] <= 20:
-                        Js[i,j] = exp_jacobian(protein_coords[i], ligand_coords[j], eta, self.beta)
-                        Hs[i,j] = exp_hessian(protein_coords[i], ligand_coords[j], eta, self.beta)
-                        Js_[j,i] = exp_jacobian(ligand_coords[j], protein_coords[i], eta, self.beta)
-                        Hs_[j,i] = exp_hessian(ligand_coords[j], protein_coords[i], eta, self.beta)
-                    else:
-                        Js[i,j] = np.zeros(3)
-                        Hs[i,j] = np.zeros((3,3)) 
-                        Js_[j,i] = np.zeros(3)
-                        Hs_[j,i] = np.zeros((3,3))    
+                    Js[i,j] = exp_jacobian(protein_coords[i], ligand_coords[j], eta, self.beta)
+                    Hs[i,j] = exp_hessian(protein_coords[i], ligand_coords[j], eta, self.beta)
+                    Js_[j,i] = exp_jacobian(ligand_coords[j], protein_coords[i], eta, self.beta)
+                    Hs_[j,i] = exp_hessian(ligand_coords[j], protein_coords[i], eta, self.beta)
+                
                         
         if self.kernel == 'lorentz':
             for i in np.arange(protein_coords.shape[0]):
                 for j in np.arange(ligand_coords.shape[0]):
-                    # cut off distance is 20 Angstrom
-                    if dists[i, j] <= 20:
-                        Js[i,j] = lorentz_jacobian(protein_coords[i], ligand_coords[j], eta, self.beta)
-                        Hs[i,j] = lorentz_hessian(protein_coords[i], ligand_coords[j], eta, self.beta)
-                        Js_[j,i] = lorentz_jacobian(ligand_coords[j], protein_coords[i], eta, self.beta)
-                        Hs_[j,i] = lorentz_hessian(ligand_coords[j], protein_coords[i], eta, self.beta)
-                    else:
-                        Js[i,j] = np.zeros(3)
-                        Hs[i,j] = np.zeros((3,3)) 
-                        Js_[j,i] = np.zeros(3)
-                        Hs_[j,i] = np.zeros((3,3))   
+                    Js[i,j] = lorentz_jacobian(protein_coords[i], ligand_coords[j], eta, self.beta)
+                    Hs[i,j] = lorentz_hessian(protein_coords[i], ligand_coords[j], eta, self.beta)
+                    Js_[j,i] = lorentz_jacobian(ligand_coords[j], protein_coords[i], eta, self.beta)
+                    Hs_[j,i] = lorentz_hessian(ligand_coords[j], protein_coords[i], eta, self.beta)
+                    
         
         
         # if self.curvature == 'mean'. Here we haven't implemented gaussian curvature yet.
