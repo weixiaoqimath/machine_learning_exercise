@@ -13,6 +13,7 @@ class normalizer():
     def fit(self, X):
         self.mean = np.mean(X, axis=0) # mean of each column vector
         self.std = np.std(X, axis=0) # std of each column vector
+        self.std[self.std <= 1e-5] = 1 # avoid division by 0
 
     def transform(self, X):
         """
