@@ -59,19 +59,14 @@ def RMSE(x, y):
     return np.sqrt(np.dot(x-y, x-y)/m)
 
 # load data into dataframe
-Xtrain = pd.read_csv("airfoil_self_noise_X_train.csv")
-ytrain = pd.read_csv("airfoil_self_noise_y_train.csv")
-Xtest = pd.read_csv("airfoil_self_noise_X_test.csv")
-ytest = pd.read_csv("airfoil_self_noise_y_test.csv")
-
-Xtrain = Xtrain.values
-ytrain = ytrain.values
-Xtest = Xtest.values
-ytest = ytest.values
+Xtrain = pd.read_csv("airfoil_self_noise_X_train.csv").values
+ytrain = pd.read_csv("airfoil_self_noise_y_train.csv").values
+Xtest = pd.read_csv("airfoil_self_noise_X_test.csv").values
+ytest = pd.read_csv("airfoil_self_noise_y_test.csv").values
 
 print(Xtrain.shape, ytrain.shape, Xtest.shape, ytest.shape)
 # reshape y
-ytrain = ytrain.flatten()
+ytrain = ytrain.flatten() # or np.ravel()
 ytest = ytest.flatten()
 
 # rescale Xtrain. Make sure features are on a similar scale.
