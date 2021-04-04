@@ -57,4 +57,4 @@ if __name__ == '__main__':
     skRF.fit(Xtrain, ytrain)
 
     ypred = skRF.predict(Xtest)
-    print(accuracy(ypred, ytest.ravel()))
+    print(accuracy(ypred, ytest.ravel())) # 82-87%
