@@ -27,7 +27,7 @@ def loss(X, y, theta):
         theta is a 1d vector. X is the extended matrix.
     """
     m = X.shape[0]
-    return 1/m*(-np.dot(y, np.log(sigmoid(np.dot(X, theta))))-np.dot(1-y, np.log(1 - sigmoid(np.dot(X, theta)))))
+    return 1/m*(-y * np.log(sigmoid(np.dot(X, theta)))- (1-y) * np.log(1 - sigmoid(np.dot(X, theta))))
 
 def gradient_descent(X, y, theta, lr, num_iters):
     """
