@@ -128,7 +128,7 @@ class DT_regressor:
             self.max_features = X.shape[1]
         self.tree = self.build_tree(X, y)   
 
-    def build_tree(self, X, y, depth=1):
+    def build_tree(self, X, y, depth=0):
         """
             Create a decision tree recursively.
         """
