@@ -105,7 +105,7 @@ if __name__ == '__main__':
     gbc = GradientBoostingClassifier(learning_rate=0.1, n_estimators=10, max_depth=4, max_features=20)
     gbc.fit(Xtrain, ytrain)
     score=gbc.score(Xtest, ytest) 
-    print(score) # 85.00%
+    print(score) # around 81.00%
 
 
 
