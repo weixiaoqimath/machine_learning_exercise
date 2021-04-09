@@ -46,7 +46,7 @@ if __name__ == '__main__':
 
     start = time.time()
     RF = random_forest_classifier(n_estimators=10, max_features=8) # n_estimator=10, max_features=None, max_depth=8, takes about 900s to run, accuracy is 84.40%
-    # n_estimators=10, max_features=8, accuracy is around 81%, takes 17s to run.
+    # n_estimators=10, max_features=8, accuracy is 81-84%, takes around 16s to run.
     RF.fit(Xtrain, ytrain)
     ypred = RF.predict(Xtest)
     score = accuracy(ypred, ytest)
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     print("Takes {:.2f} seconds".format(end-start))
     
     from sklearn.ensemble import RandomForestClassifier
-    skRF = RandomForestClassifier(max_features=8, n_estimators=10)
+    skRF = RandomForestClassifier(max_features=8, n_estimators=10) # 83%
     skRF.fit(Xtrain, ytrain)
 
     ypred = skRF.predict(Xtest)
