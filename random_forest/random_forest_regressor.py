@@ -49,7 +49,7 @@ if __name__ == '__main__':
     rmse = RMSE(ypred, ytest)
     pcc = PCC(ypred, ytest)
     end = time.time()
-    print("The RMSE is {:.2f} and the PCC is {:.2f}".format(rmse, pcc)) # 2.75 and 0.92
+    print("The RMSE is {:.2f} and the PCC is {:.2f}".format(rmse, pcc)) # 1.99 and 0.96
     print("Takes {:.2f} seconds".format(end-start))
     
     from sklearn.ensemble import RandomForestRegressor
@@ -59,5 +59,5 @@ if __name__ == '__main__':
     ypred = skRF.predict(Xtest)
     rmse = RMSE(ypred, ytest)
     pcc = PCC(ypred, ytest)
-    print("The RMSE is {:.2f} and the PCC is {:.2f}".format(rmse, pcc)) # 1.98 and 0.96
+    print("The RMSE is {:.2f} and the PCC is {:.2f}".format(rmse, pcc)) # 1.95 and 0.96
 
