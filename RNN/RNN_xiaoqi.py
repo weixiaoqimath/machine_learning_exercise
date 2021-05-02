@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
-Author: Xiaoqi Wei
+Author: Xiaoqi Wei 
+This is a assignment I turned in for MTH994.
 '''
 import math
 import time
