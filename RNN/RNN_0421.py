@@ -1,3 +1,6 @@
+"""
+    This is written in a different way from Rui Wang 
+"""
 import numpy as np
 import pandas as pd
 import time
