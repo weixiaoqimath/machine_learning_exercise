@@ -1,5 +1,6 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+"""
+    Rui Wang's version
+"""
 
 import math
 import time
