@@ -1,0 +1,16 @@
+#!/bin/bash --login
+
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --time=12:00:00
+#SBATCH --mem=128gb
+#SBATCH --gres=gpu:k80:1
+#SBATCH --output=seq2seq_GPU_k80.txt
+
+module load Conda/3 
+conda activate py36
+cd Documents/seq2seq
+python seq2seq_self.py
+
+scontrol show jobid -dd $SLURM_JOBID
+
