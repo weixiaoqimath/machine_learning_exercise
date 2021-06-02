@@ -1,0 +1,15 @@
+#!/bin/bash --login
+
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --time=12:00:00
+#SBATCH --mem=128gb
+#SBATCH --gres=gpu:v100:1
+#SBATCH --output=UNet_v100.txt
+
+module load Conda/3 
+conda activate py36
+python SimpleUnet.py 40
+
+scontrol show jobid -dd $SLURM_JOBID
+
