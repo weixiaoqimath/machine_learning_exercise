@@ -62,7 +62,9 @@ if __name__ == '__main__':
     rmse = RMSE(ypred, ytest)
     pcc = PCC(ypred, ytest) 
     end = time.time()
-    print("The RMSE is {:.2f} and the PCC is {:.2f}".format(rmse, pcc)) # The RMSE is 2.36 and the PCC is 0.94
+    print("The RMSE is {:.2f} and the PCC is {:.2f}".format(rmse, pcc)) 
+    # n_estimators = 20, max_depth = None, min_samples_split=2, lr =0.1, max_features = None, The RMSE is 2.36 and the PCC is 0.94
+    # n_estimators = 100, max_depth = 3, min_samples_split=2, lr =0.1, max_features = None, rmse = 2.70, pcc=0.92
     print("Takes {:.2f} seconds".format(end-start)) # Takes 10-15s
 
 
