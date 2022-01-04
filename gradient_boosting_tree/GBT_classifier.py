@@ -91,18 +91,18 @@ if __name__ == '__main__':
     GBTC = GBT_classifier(n_estimators=100, max_depth = 3, lr = 0.5) 
     GBTC.fit(Xtrain, ytrain_ohe)
     ypred = GBTC.predict(Xtest)
-    # learning_rate=0.1, n_estimators=10, max_depth=4, max_features=20, around 60s, around 83%
+    
 
 
     end = time.time()
     score = accuracy(ytest, ypred)
-    print("The accuracy of multiclass classification is {:.2f}%".format(score*100))
+    print("The accuracy of multiclass classification is {:.2f}%".format(score*100)) #87.8%
     print("Takes {:.2f} seconds.".format(end - start))
 
     gbc = GradientBoostingClassifier(learning_rate=0.5, n_estimators=100, max_depth=3, max_features=2)
     gbc.fit(Xtrain, ytrain)
     score=gbc.score(Xtest, ytest) 
-    print(score) # learning_rate=0.1, n_estimators=10, max_depth=4, max_features=20, around 81.00%
+    print(score) # 87.2%
 
 
 
